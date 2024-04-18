@@ -1,0 +1,47 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  & input {
+    outline: none;
+    font-size: 0.95rem;
+    padding: 10px 15px;
+    margin: 5px 0;
+    width: 100%;
+    border: 1px solid #e6e6e6;
+  }
+
+  & button[type="submit"] {
+    background-color: var(--color-initial);
+    color: white;
+    padding: 8px 15px;
+    transition: background-color 100ms ease;
+    margin-top: 5px;
+    border-radius: 2px;
+    font-size: 0.95rem;
+  }
+  & button:hover {
+    background-color: var(--color-initial-hover);
+  }
+
+  & .checkbox-admin {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 0.92rem;
+    user-select: none;
+    margin: 0 !important;
+
+    & input {
+      width: auto;
+      margin-right: 5px;
+      margin-left: 15px;
+    }
+  }
+  & p {
+    color: red !important;
+    margin: 0;
+  }
+}
+
+

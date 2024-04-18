@@ -1,0 +1,150 @@
+.panel-container {
+  display: flex;
+  background-color: var(--bg-secondary);
+}
+
+.panel-options {
+  width: 17%;
+  height: calc(100vh - 80px);
+  position: sticky;
+  top: 80px;
+  background-color: var(--color-initial);
+  margin: 0;
+  color: white;
+
+  & p {
+    margin: 0;
+  }
+
+  & .data {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 2.5rem 0;
+
+    & .content-img {
+      background-color: white;
+      border-radius: 50%;
+      padding: 1.8rem;
+      & img {
+        width: 82px;
+      }
+    }
+  }
+
+  & .options {
+    & * {
+      padding: 12px;
+      display: block;
+      border-bottom: 1px solid rgba(206, 206, 206, 0.24);
+    }
+
+    & span {
+      background-color: var(--color-panel-links-hover);
+      font-style: italic;
+      user-select: none;
+      color: black;
+    }
+    & a {
+      color: white;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+    & a:hover {
+      background-color: var(--color-panel-links-hover);
+    }
+  }
+}
+.panel-form {
+  width: 83%;
+}
+
+@media screen and (max-width: 992px) {
+  :root {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 992px) {
+}
+
+@media screen and (max-width: 768px) {
+  .panel-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .active-panel-link{
+    background-color:var(--color-panel-links-hover);
+  }
+  .panel-options {
+    height: calc(100vh - 60px) !important;
+    width: 100% !important;
+    height: auto !important;
+    position: sticky !important;
+    top: 60px;
+    & .content-img {
+      padding: 1.4rem !important;
+      & img {
+        width: 72px !important;
+      }
+    }
+    & .content-img {
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      & img {
+        width: 62px !important;
+      }
+      
+    }
+    & .options{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      
+      & span {
+        display: none;
+      }
+    }
+   
+  }
+  .container-panel-options{
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .container-panel-options div{
+    width: 50%;
+  }
+  .panel-form{
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 576px) {
+ 
+  .panel-options {
+    & a {
+      padding: 10px !important;
+    }
+    & .data {
+      margin: 1rem 0;
+
+      & p {
+        margin-top: 2px;
+      }
+    }
+
+  }
+}
+
+@media screen and (max-width: 400px) {
+
+  .content-add-product {
+    width: 80% !important;
+    padding: var(--padding-mobile);
+    margin: 0 auto;
+  }
+ 
+}

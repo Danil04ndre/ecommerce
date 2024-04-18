@@ -1,0 +1,203 @@
+.content-added-products {
+  display: flex;
+  justify-content: center;
+  & table {
+    display: block;
+    border-collapse: collapse;
+    margin: 0 auto 0 auto;
+    font-size: 1rem;
+    overflow-x: auto !important;
+  }
+  & th,
+  td {
+    padding: 1rem;
+
+  }
+  & th {
+    background-color: #101726;
+    color: white;
+    font-weight: 300;
+    font-size: 0.9rem;
+    text-align: left;
+
+  }
+  & tr {
+    border-bottom: 1px solid rgb(163, 161, 161);
+  }
+  & .actions {
+    padding: var(--padding-mobile)
+    
+  }
+  & .actions button {
+    padding: 0;
+    display: block;
+    
+  }
+  & .actions svg {
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    margin: 2px 0;
+  
+  }
+  & .actions .edit svg {
+    font-size: 2.3rem;
+    background-color: #0f4ee5;
+    overflow: hidden;
+  }
+  & .actions .delete svg {
+    font-size: 2.3rem;
+    background-color: #e12a2b;
+  }
+}
+
+.modal {
+  opacity: 0;
+  pointer-events: none;
+  background-color: rgba(0, 0, 0, 0.856);
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .form-add-product {
+    padding: 15px 20px;
+  }
+  & form {
+    background-color: var(--bg-secondary);
+  }
+  & h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+}
+.modal.active {
+  opacity: 1;
+  pointer-events: auto;
+  overflow-y: auto;
+}
+.no-products td {
+  text-align: center;
+}
+.cl {
+  background-color: red;
+  width: 100%;
+}
+
+.content-img-data {
+  width: 150px;
+  height: 120px;
+  border-radius: 15px;
+  overflow: hidden;
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.swal2-popup{
+  padding: 1rem 0;
+}
+.swal2-title{
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: black;
+  padding: 0
+
+}
+.swal2-actions{
+  margin: .5rem 0 0 0;
+
+  & button{
+    padding: .5rem 1rem;
+
+  }
+}
+.swal-icon{
+  font-size: 11px;
+  font-weight: bolder;
+  color: #e12a2b;
+  margin: .2rem auto;
+  top: 0;
+}
+@media screen and (max-width: 992px) {
+  .modal.active {
+    & .content-add-product {
+      width: 50%;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal.active {
+    & .form-add-product {
+      display: block;
+
+      /* margin top para q se vea completo si hay error*/
+    }
+  }
+
+  .content-added-products {
+    & th {
+      padding: .95rem .8rem;
+    }
+    & td {
+      padding: .5rem .8rem;
+    }
+  }
+}
+
+
+@media screen and (max-width: 576px) {
+  .content-added-products{
+    & th {
+      text-align: center;
+    }
+  }
+  .modal.active {
+    & .content-add-product {
+      width: 70% !important;
+    }
+  }
+  .no-products td {
+    text-align: start;
+  }
+
+  .swal2-title{
+    font-size: 1.15rem;
+  }
+  .swal2-actions{
+    & button{
+      padding: .4rem .9rem;
+    }
+  }
+  .swal2-popup{
+    width: 20rem;
+    padding: .8rem 0;
+  }
+  .swal-icon{
+    font-size: 9px;
+  }
+  .swal2-html-container{
+    margin: .6rem auto .2rem auto !important;
+  }
+
+  .content-img-data {
+    width: 115px;
+    height: 95px;
+    border-radius: 12px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .modal.active {
+    & .content-add-product {
+      width: 80% !important;
+    }
+  }
+}
