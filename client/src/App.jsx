@@ -10,6 +10,9 @@ import { useSelector } from "react-redux";
 import AddProduct from "./Pages/AddProduct";
 import AddedProducts from "./Pages/AddedProducts";
 import Footer from "./components/Footer";
+import Categories from "./Pages/Categories";
+import HomeProducts from "./Pages/HomeProducts";
+import TechnologyProducts from "./Pages/TechnologyProducts";
 
 
 function App() {
@@ -31,10 +34,20 @@ function App() {
         <Route element={<ProtectedMyShopping />}>
           <Route path="/my-shopping" element={<MyShopping />} />
         </Route>
-        <Route path="/admin-panel" element={<AdminPanel />} >
+        
+        {/* ruta y subrutas de las paginas del admin */}
+        <Route element={<AdminPanel />} >
           <Route path="/admin-panel/add-product" element={<AddProduct />} />
           <Route path="/admin-panel/added-products" element={<AddedProducts />} />
+        </Route>    
+
+        {/* ruta y subrutas de las paginas de las categorias */}
+        <Route path="/categories" element={<Categories />}>
+          <Route path="/categories/home-products" element={<HomeProducts />}/>
+          <Route path="/categories/technology-products" element={<TechnologyProducts />}/>
         </Route>
+        <Route path="/*" element={<h1>NO EXISTE LA RUTA</h1>}/>
+
       </Routes>
       {showFooter && <Footer />}
     </>

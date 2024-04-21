@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { unsetUser } from "../reducers/userSlice";
 import { readProducts } from "../reducers/adminSlice";
 import { useNavigate } from "react-router-dom"
+import NavList from "./NavList";
+
 import "../css/Header.css";
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
@@ -45,6 +47,7 @@ const Header = () => {
                 refNav.current.classList.add("pages-active");
               } else {
                 refNav.current.classList.remove("pages-active");
+                toggled = false;
               }
             }}
             size={20}
@@ -55,10 +58,19 @@ const Header = () => {
           <img src={logo} alt="" />
         </div>
         <div className="pages" ref={refNav}>
+          <div className="content-links-desktop">
           <Link to="/">TIENDA</Link>
-          <a className="">TECNOLOGIA</a>
-          <a className="">HOGAR</a>
-          <a className="">ROPA</a>
+          <Link to="/categories/technology-products" className="">TECNOLOGIA</Link>
+          <Link to="/categories/home-products" className="">HOGAR</Link>
+          <Link className="">ROPA</Link>
+          </div>
+          <div className="content-nav-list">
+           <NavList setOpen={setOpen} refNav={refNav}>
+            <li className="list-item">
+              <Link to="/" className="nav-link">TIENDA</Link>
+            </li>
+           </NavList>
+          </div>
         </div>
         <div className="content-count">
           <div
