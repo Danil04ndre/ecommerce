@@ -1,8 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
+import AppContext from "../context/AppContext";
 
-const NavList = ({ children, setOpen, refNav }) => {
+const NavList = ({ children }) => {
+  const {setOpen, refNav} = useContext(AppContext);
+
   const handleShowList = (e) => {
     e.currentTarget.classList.toggle("arrow");
     const menuInside = e.currentTarget.nextElementSibling;
@@ -40,22 +43,25 @@ const NavList = ({ children, setOpen, refNav }) => {
 
           <ul className="list-show">
             <li className="list-inside">
-              <Link className="nav-link nav-link-inside">Celulares</Link>
+              <Link to="/categoria-producto/tecnologia" className="nav-link nav-link-inside link-hidden-desktop">Ver todos los productos</Link>
             </li>
             <li className="list-inside">
-              <Link className="nav-link nav-link-inside">Computadoras</Link>
+              <Link to="/categoria-producto/tecnologia/celulares" className="nav-link nav-link-inside">Celulares</Link>
             </li>
             <li className="list-inside">
-              <Link className="nav-link nav-link-inside">Televisores</Link>
+              <Link to="/categoria-producto/tecnologia/computadoras" className="nav-link nav-link-inside">Computadoras</Link>
             </li>
             <li className="list-inside">
-              <Link className="nav-link nav-link-inside">Teclados</Link>
+              <Link to="/categoria-producto/tecnologia/televisores" className="nav-link nav-link-inside">Televisores</Link>
             </li>
             <li className="list-inside">
-              <Link className="nav-link nav-link-inside">Laptops</Link>
+              <Link to="/categoria-producto/tecnologia/teclados" className="nav-link nav-link-inside">Teclados</Link>
             </li>
             <li className="list-inside">
-              <Link className="nav-link nav-link-inside">Mouses</Link>
+              <Link to="/categoria-producto/tecnologia/laptops" className="nav-link nav-link-inside">Laptops</Link>
+            </li>
+            <li className="list-inside">
+              <Link to="/categoria-producto/tecnologia/mouses" className="nav-link nav-link-inside">Mouses</Link>
             </li>
           </ul>
         </li>
@@ -70,16 +76,19 @@ const NavList = ({ children, setOpen, refNav }) => {
           </div>
 
           <ul className="list-show">
-            <li className="list-inside">
-              <Link className="nav-link nav-link-inside">Muebles</Link>
+          <li className="list-inside">
+              <Link to="/categoria-producto/hogar" className="nav-link nav-link-inside link-hidden-desktop">Ver todos los productos</Link>
             </li>
             <li className="list-inside">
-              <Link className="nav-link nav-link-inside">
+              <Link to="/categoria-producto/hogar/muebles" className="nav-link nav-link-inside">Muebles</Link>
+            </li>
+            <li className="list-inside">
+              <Link to="/categoria-producto/hogar/electrodomesticos" className="nav-link nav-link-inside">
                 Electrodomesticos
               </Link>
             </li>
             <li className="list-inside">
-              <Link className="nav-link nav-link-inside">Decoracion</Link>
+              <Link to="/categoria-producto/hogar/decoracion" className="nav-link nav-link-inside">Decoracion</Link>
             </li>
           </ul>
         </li>

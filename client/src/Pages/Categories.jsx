@@ -4,12 +4,11 @@ import "../css/Categories.css";
 import NavList from "../components/NavList";
 
 const Categories = () => {
-  
   return (
     <>
-      <section className="categories">
-        <NavList />
-        <article>
+      <section className="categories container">
+        <NavList/>
+        <article className="products-specific">
           <Outlet />
         </article>
       </section>

@@ -15,7 +15,7 @@ const AddedProducts = () => {
   const { id, token } = useSelector((state) => state.user);
   const { data } = useSelector((state) => state.admin);
   const dispatch = useDispatch();
-
+  console.log("aeaaddedproducsts")
   const getAddedProducts = async () => {
     try {
       const res = await fetch(`http://localhost:3000/read-products-admin/${id}`,{
@@ -30,7 +30,6 @@ const AddedProducts = () => {
       } else {
         dispatch(readProducts([]));
       }
-      
       if(json.messageAuthorized){
         setMsgToken(json.messageAuthorized);
         setLoaderRequest(false)

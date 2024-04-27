@@ -4,6 +4,7 @@ import LatestedProducts from "../components/LatestedProducts";
 import BestProducts from "../components/BestProducts";
 
 const Home = () => {
+  console.log("hola")
   return (
     <>
       <HeroImage />

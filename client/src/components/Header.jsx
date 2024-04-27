@@ -11,15 +11,18 @@ import { unsetUser } from "../reducers/userSlice";
 import { readProducts } from "../reducers/adminSlice";
 import { useNavigate } from "react-router-dom"
 import NavList from "./NavList";
-
+import { useContext } from "react";
+import AppContext from "../context/AppContext";
 import "../css/Header.css";
-const Header = () => {
-  const [isOpen, setOpen] = useState(false);
-  const { name } = useSelector((state) => state.user);
 
+
+
+const Header = () => {
+  const { name } = useSelector((state) => state.user);
+  const {isOpen, setOpen, refNav} = useContext(AppContext);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const refNav = useRef();
+
   const refOptionsUser = useRef();
 
   const handleShowOptionsUser = () => {
@@ -59,15 +62,15 @@ const Header = () => {
         </div>
         <div className="pages" ref={refNav}>
           <div className="content-links-desktop">
-          <Link to="/">TIENDA</Link>
-          <Link to="/categories/technology-products" className="">TECNOLOGIA</Link>
-          <Link to="/categories/home-products" className="">HOGAR</Link>
+          <Link to="/">INICIO</Link>
+          <Link to="/categoria-producto/tecnologia" className="">TECNOLOGIA</Link>
+          <Link to="/categoria-producto/hogar" className="">HOGAR</Link>
           <Link className="">ROPA</Link>
           </div>
           <div className="content-nav-list">
-           <NavList setOpen={setOpen} refNav={refNav}>
+           <NavList>
             <li className="list-item">
-              <Link to="/" className="nav-link">TIENDA</Link>
+              <Link to="/" className="nav-link">INICIO</Link>
             </li>
            </NavList>
           </div>
@@ -86,7 +89,7 @@ const Header = () => {
               {name ? (
                 <>
                   <Link to="my-shopping">Mis compras</Link>
-                  <button onClick={handleLogout}>Cerrar session</button>{" "}
+                  <button onClick={handleLogout}>Cerrar session</button>
                 </>
               ) : null}
             </div>

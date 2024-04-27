@@ -5,6 +5,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 const AdminPanel = () => {
   const { email } = useSelector((state => state.user));
+  console.log("holaadmin")
   return (
     <>
       <section className="panel-container">

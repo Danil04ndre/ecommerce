@@ -158,6 +158,9 @@
     & th {
       text-align: center;
     }
+    &  .lds-ripple{
+      margin: 0;
+    }
   }
   .modal.active {
     & .content-add-product {

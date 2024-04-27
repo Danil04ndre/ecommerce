@@ -28,7 +28,9 @@
 .lasted-products a:hover img {
   transform: scale(1.1);
 }
-
+.lasted-products .lds-ripple {
+  grid-column: span 4;
+}
 @media screen and (max-width: 1200px) {
   .lasted-products {
     grid-template-rows: auto auto;

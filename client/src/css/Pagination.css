@@ -1,0 +1,57 @@
+.pagination-pages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  & button {
+    background-color: var(--color-initial);
+    display: block;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    transition: background-color 200ms ease;
+  }
+  & button:hover {
+    background-color: var(--color-initial-hover);
+  }
+  & svg {
+    font-size: 1.5rem;
+    color: white;
+  }
+  & span {
+    display: inline-block;
+    padding: 3px 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+    text-align: center;
+  }
+  & p {
+    margin: 0 10px;
+    font-weight: 700;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .pagination-pages {
+    margin-top: 40px;
+    & button {
+      width: 28px;
+      height: 28px;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .pagination-pages {
+    & button {
+      width: 25px;
+      height: 25px;
+    }
+    & p {
+      margin: 0 8px;
+    }
+  }
+}

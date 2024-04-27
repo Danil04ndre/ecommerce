@@ -18,7 +18,9 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(cookieParser())
-
+app.get("/",(req,res) => {
+  res.json({ok: "s"})
+})
 app.use("/public",express.static(path.join(__dirname, "./uploads")))
 
 app.use(routerAuth);
