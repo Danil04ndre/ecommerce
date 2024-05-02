@@ -6,17 +6,14 @@ import ProtectedAuth from "./components/ProtectedAuth";
 import MyShopping from "./Pages/MyShopping";
 import ProtectedMyShopping from "./components/ProtectedMyShopping";
 import AdminPanel from "./Pages/AdminPanel";
-import { useDispatch } from "react-redux";
 import AddProduct from "./Pages/AddProduct";
 import AddedProducts from "./Pages/AddedProducts";
 import Footer from "./components/Footer";
 import Categories from "./Pages/Categories";
-import { notify } from "./helpers/toastify";
-import { useEffect, useRef, useState } from "react";
-import { readAllProducts } from "./reducers/productsSlice";
 import ProductsSubCategory from "./Pages/ProductsSubCategory";
 import ProductsCategory from "./Pages/ProductsCategory";
 import DetailProduct from "./Pages/DetailProduct";
+import Cart from "./Pages/Cart";
 
 function App() {
   const location = useLocation();
@@ -53,7 +50,7 @@ function App() {
           <Route path="/categoria-producto/:category/:subcategory" element={<ProductsSubCategory />}/>
         </Route>
         <Route path="/categoria-producto/:category/:subcategory/:nameproduct" element={<DetailProduct />}/>
-
+        <Route path="/carrito" element={<Cart />}/>
         <Route path="/*" element={<h1>NO EXISTE LA RUTA</h1>}/>
 
       </Routes>

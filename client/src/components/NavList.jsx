@@ -2,10 +2,12 @@ import React, { useContext, useEffect } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 import AppContext from "../context/AppContext";
+import { useSelector } from "react-redux";
+import { FaUser } from "react-icons/fa";
 
 const NavList = ({ children }) => {
   const {setOpen, refNav} = useContext(AppContext);
-
+  const {name} = useSelector(state => state.user);
   const handleShowList = (e) => {
     e.currentTarget.classList.toggle("arrow");
     const menuInside = e.currentTarget.nextElementSibling;
@@ -113,6 +115,26 @@ const NavList = ({ children }) => {
             </li>
           </ul>
         </li>
+ 
+        {name && <li className="list-item list-user">
+          <div
+            className="list-button list-button-click"
+            onClick={handleShowList}
+          >
+            <FaUser className="list-user-svg"/>
+            <span className="nav-link">{name}</span>
+            <IoIosArrowForward className="list-arrow" />
+          </div>
+
+          <ul className="list-show">
+            <li className="list-inside">
+              <Link to="/my-shopping" className="nav-link nav-link-inside">Mis compras</Link>
+            </li>
+            <li className="list-inside">
+              <button className="nav-link nav-link-inside">Cerrar session</button>
+            </li>
+          </ul>
+        </li>}
       </ul>
     </nav>
   );

@@ -30,11 +30,11 @@
   & svg {
     font-size: 28px;
   }
-  & div {
+  & .cart-link {
     position: relative;
   }
 
-  & span {
+  & .cart-link span {
     position: absolute;
     top: -5px;
     right: -10px;
@@ -83,10 +83,6 @@
   }
   & b {
     text-transform: capitalize;
-  }
-
-  & .auth-icon svg {
-    color: #07bc0c;
   }
 }
 .content-nav-list {
@@ -168,7 +164,14 @@
     background-color: transparent;
   }
 }
-
+@media screen and (max-width: 992px) {
+  .user {
+    display: block;
+    & b {
+      display: none;
+    }
+  }
+}
 @media screen and (max-width: 768px) {
   .nav {
     padding: var(--padding-tablet);
@@ -205,6 +208,7 @@
   }
   .content-count {
     gap: 12px;
+    margin-right: 10px;
     & svg {
       font-size: 26px;
     }

@@ -44,14 +44,3 @@
   }
 }
 
-@media screen and (max-width: 576px) {
-  .pagination-pages {
-    & button {
-      width: 25px;
-      height: 25px;
-    }
-    & p {
-      margin: 0 8px;
-    }
-  }
-}

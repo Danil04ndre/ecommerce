@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import logo from "../assets/logo-2.png";
 import { CiSquarePlus } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
@@ -10,8 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { unsetUser } from "../reducers/userSlice";
 import { readProducts } from "../reducers/adminSlice";
 import { useNavigate } from "react-router-dom"
-import NavList from "./NavList";
 import { useContext } from "react";
+import NavList from "./NavList";
 import AppContext from "../context/AppContext";
 import "../css/Header.css";
 
@@ -19,12 +19,12 @@ import "../css/Header.css";
 
 const Header = () => {
   const { name } = useSelector((state) => state.user);
+  const { totalCount } = useSelector((state) => state.cart);
   const {isOpen, setOpen, refNav} = useContext(AppContext);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const refOptionsUser = useRef();
-
   const handleShowOptionsUser = () => {
     refOptionsUser.current.style.display = "flex";
   };
@@ -82,7 +82,7 @@ const Header = () => {
             onMouseOut={handleHideOptionsUser}
           >
             <b>{name}</b>
-            <Link to="/auth" className="auth-icon">
+            <Link to={!name ? '/auth' : '#'} className="auth-icon">
               <CiUser/>
             </Link>
             <div className="options" ref={refOptionsUser}>
@@ -97,10 +97,10 @@ const Header = () => {
           <Link to="/admin-panel/add-product">
             <CiSquarePlus />
           </Link>
-          <div className="">
+          <Link to="/carrito" className="cart-link">
             <CiShoppingCart />
-            <span className="count">10</span>
-          </div>
+            <span className="count">{totalCount}</span>
+          </Link>
         </div>
       </nav>
     </header>
