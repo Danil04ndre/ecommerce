@@ -34,12 +34,17 @@ const AddProduct = ({ dataToEdit, getAddedProducts,setModalOpen}) => {
     const { name, value, files } = e.target;
     
     if (name === "image") {
-      setFormAddProduct({
-        ...formAddProduct,
-        image: files[0],
-      });
-      const imageURL = URL.createObjectURL(files[0]);
-      setImagePreview(imageURL);
+      const selectedFile = files[0];
+      if (selectedFile && selectedFile.type.startsWith('image/')) {
+        setFormAddProduct({
+          ...formAddProduct,
+          image: selectedFile,
+        });
+        const imageURL = URL.createObjectURL(selectedFile);
+        setImagePreview(imageURL);
+      } else {
+        notify("warn", "Solo archivos de imagen.");
+      }
     } else if (name === "sub_category"){
       let category = "";
       if (value === "Celulares" || value === "Computadoras" || value === "Televisores" || value === "Teclados" || value === "Laptops" || value === "Mouses") {
@@ -64,7 +69,13 @@ const AddProduct = ({ dataToEdit, getAddedProducts,setModalOpen}) => {
 
   const handleSubmitAddProduct = async (e) => {
     e.preventDefault();
-
+    const fieldsToCheck = ['name', 'sub_category', 'image', 'description', 'price', 'stock'];
+    for (const field of fieldsToCheck) {
+      if (!formAddProduct[field]) {
+        notify("warn", "Todos los campos deben estar llenados.");
+        return;
+      }
+    }
     const formData = new FormData();
     formData.append("name", formAddProduct.name);
     formData.append("category", formAddProduct.category);
@@ -85,7 +96,13 @@ const AddProduct = ({ dataToEdit, getAddedProducts,setModalOpen}) => {
             body: formData,
           }),
           json = await res.json();
-    
+        console.log(json);
+
+        if(json.productCreated){
+          notify("success","Producto Registrado.");
+          setFormAddProduct(initialAddProduct);
+          setImagePreview(null);
+        }
         if (json.messageAuthorized) {
           notify("warn", `${json.messageAuthorized}`);
           return;
@@ -114,8 +131,6 @@ const AddProduct = ({ dataToEdit, getAddedProducts,setModalOpen}) => {
           setModalOpen(false)
           }, 1500);
         }
-
-
         if (!res.ok) {
           throw { status: res.status, statusText: res.statusText };
         }

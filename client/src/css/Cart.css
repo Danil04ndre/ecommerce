@@ -90,6 +90,10 @@
   & button:hover {
     background-color: var(--color-initial-hover);
   }
+  .lds-ripple{
+    margin-top: 15px;
+    grid-column: 1 / span 2;
+  }
 }
 
 @media screen and (max-width: 992px) {

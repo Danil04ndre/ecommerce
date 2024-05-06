@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/logo-2.png";
 import { CiSquarePlus } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
@@ -15,12 +15,11 @@ import NavList from "./NavList";
 import AppContext from "../context/AppContext";
 import "../css/Header.css";
 
-
-
 const Header = () => {
   const { name } = useSelector((state) => state.user);
   const { totalCount } = useSelector((state) => state.cart);
   const {isOpen, setOpen, refNav} = useContext(AppContext);
+  const [eventsUserOptions, setEventsUserOptions] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,6 +30,12 @@ const Header = () => {
   const handleHideOptionsUser = () => {
     refOptionsUser.current.style.display = "none";
   };
+
+  useEffect(() => {
+    if (window.innerWidth <= 992) {
+      setEventsUserOptions(true);
+    }
+  }, []); 
 
   const handleLogout = () => {
     document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -78,8 +83,8 @@ const Header = () => {
         <div className="content-count">
           <div
             className="user"
-            onMouseOver={handleShowOptionsUser}
-            onMouseOut={handleHideOptionsUser}
+            onMouseOver={!eventsUserOptions ? handleShowOptionsUser : null}
+            onMouseOut={!eventsUserOptions ? handleHideOptionsUser : null}
           >
             <b>{name}</b>
             <Link to={!name ? '/auth' : '#'} className="auth-icon">

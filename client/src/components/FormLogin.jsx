@@ -44,14 +44,12 @@ const FormLogin = () => {
           body: JSON.stringify(formLogin),
         }),
         json = await res.json();
-      console.log(json);
       if (json.incorrectAccount) {
         setIncorrectAccount(true);
       }
       if (json.success) {
         setIncorrectAccount(false);
         const userData = tokenData();
-        console.log(userData)
         dispatch(setUser(userData));
         navigate("/")
       }

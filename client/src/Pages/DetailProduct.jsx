@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useParams } from "react-router-dom";
 import { readDetailProduct } from "../reducers/productsSlice";
 import { IoIosArrowForward } from "react-icons/io";
+import { addProductToCart } from "../reducers/cartSlice";
 import "../css/DetailProduct.css";
 
 const DetailProduct = () => {
@@ -18,8 +19,6 @@ const DetailProduct = () => {
             `http://localhost:3000/get-detail-product/${nameproduct}`
           ),
           json = await res.json();
-
-        console.log(json);
 
         if (json.data) {
           dispatch(readDetailProduct(json.data[0]));
@@ -57,8 +56,8 @@ const DetailProduct = () => {
               <p className="price">S/ {price}</p>
               <p className="description">{description}</p>
               <div className="buttons">
-                <Link>Ir al carrito</Link>
-                <button>Agregar al carrito</button>
+                <Link to="/carrito">Ir al carrito</Link>
+                <button onClick={() => dispatch(addProductToCart(currentProduct))}>Agregar al carrito</button>
               </div>
             </div>
           </div>

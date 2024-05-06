@@ -1,0 +1,51 @@
+.products-buy {
+  display: flex;
+  justify-content: center;
+
+  & table {
+    display: block;
+    margin: 30px auto;
+    border-spacing: 8px;
+    overflow-y: auto;
+  }
+
+  & th {
+    font-weight: 600;
+    font-size: 0.95rem !important;
+  }
+  & td,
+  th {
+    text-align: center;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: white;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    font-size: 0.97rem;
+  }
+
+  & svg {
+    color: rgb(7, 155, 7);
+  }
+}
+@media screen and (max-width: 768px) {
+  .products-buy {
+    & table {
+      margin: 0px auto;
+    }
+    & table {
+      border-spacing: 6px;
+    }
+    & td,
+    th {
+      padding: 7px;
+    }
+  }
+}
+@media screen and (max-width: 576px) {
+  .no-shopping td {
+    text-align: start;
+  }
+  .no-shopping .lds-ripple {
+    margin: 0;
+  }
+}

@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CiSquarePlus } from "react-icons/ci";
 import { CiSquareMinus } from "react-icons/ci";
 import { CiTrash } from "react-icons/ci";
 import "../css/Cart.css"
-import { addProductToCart, removeOneFromCart, removeProductFromCart } from "../reducers/cartSlice";
-
+import { addProductToCart, removeAllProducts, removeOneFromCart, removeProductFromCart } from "../reducers/cartSlice";
+import { notify } from "../helpers/toastify";
+import { ToastContainer } from "react-toastify";
+import LoaderRequest from "../components/LoaderRequest";
+import Loader from "../components/Loader";
 const Cart = () => {
   const { productsList, totalCount } = useSelector((state) => state.cart);
+  const { token, id } = useSelector((state) => state.user);
+  const [loader, setLoader] = useState(false);
   const dispatch = useDispatch();
 
   const delFromCart = (id,all = false) => {
@@ -24,6 +29,61 @@ const Cart = () => {
     }, 0);
   };
 
+  
+  const handleBuy = async () => {
+    setLoader(true);
+    let buyProduct = productsList.map(product => {
+      return {
+      id_product: product.id_product,
+      id_user: id,
+      unit_price: parseFloat(product.price),
+      quantity: product.quantity,
+      total: (parseFloat(product.price) * product.quantity),
+    }
+    })
+
+    try {
+      const res = await fetch("http://localhost:3000/buy-product",{
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        credentials: "include",
+        body: JSON.stringify(buyProduct),
+      }),
+      json = await res.json();
+
+      if(json.msgBuy){
+        setTimeout(() => {
+          setLoader(false);
+          notify("success", "Compra Realizada.");
+          dispatch(removeAllProducts());
+        }, 2000);
+       
+      }
+      if (json.messageAuthorized) {
+        setTimeout(() => {
+        notify("warn", `${json.messageAuthorized}`);
+        setLoader(false)
+    
+      }, 500);
+      return;
+      }
+      if (!res.ok) {
+        throw { status: res.status, statusText: res.statusText };
+      }
+
+    } catch (err) {
+      notify(
+        "error",
+        `${err.status || "Servidor no disponible en este momento,"} ${
+          err.statusText || "Intentalo mas tarde."
+        }`
+      );
+      setLoader(false);
+    }
+  }
   return (
     <section className="content-cart-products container">
       {productsList.length > 0 ? <table>
@@ -76,12 +136,14 @@ const Cart = () => {
           <hr />
           <b>TOTAL</b>
           <span>{calculateSubtotal().toLocaleString('es-PE', { style: 'currency', currency: 'PEN' })}</span>
-          <button>FINALIZAR COMPRA</button>
+          <button onClick={handleBuy}>{loader ? <Loader /> : "FINALIZAR COMPRA"}</button>
         </div>
 
       </article>}
+      <ToastContainer />
     </section>
   );
 };
 
 export default Cart;
+

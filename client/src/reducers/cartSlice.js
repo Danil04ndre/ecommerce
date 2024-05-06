@@ -52,10 +52,14 @@ export const cartSlice = createSlice({
         (product) => product.id_product !== action.payload.id_product
       );
     },
+    removeAllProducts: (state) => {
+      state.totalCount = 0;
+      state.productsList = [];
+    }
   },
 });
 
-export const { addProductToCart, removeOneFromCart, removeProductFromCart } =
+export const { addProductToCart, removeOneFromCart, removeProductFromCart, removeAllProducts } =
   cartSlice.actions;
 
 export default cartSlice.reducer;
